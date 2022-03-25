@@ -1,11 +1,11 @@
-function tablelength(T)
+function tablelength(T) -- This function replaces the built in functions for a arrays length like len() in python
   local count = 0
   for _ in pairs(T) do count = count + 1 end
   return count
 end
 
 
-function toBase2(val)
+function toBase2(val) -- from decimal to Binary
     str=""
     ar={}
     while val~=0 
@@ -22,18 +22,15 @@ function toBase2(val)
     do 
         str=str .. ar[i]
     end
-    return(string.reverse(str))
+    return(string.reverse(str)) -- return the string reversed since the functions outputs it backwards
 end
 
-print(toBase2(7))
-
 function base2to(val)
-    val=tostring(val)
+    val=string.reverse(tostring(val))
     ar={}
     num=1
     lis={}
-    str=""
-    for c in val:gmatch"." do
+    for c in val:gmatch"." do -- create a table with all the 0 & 1 seperated
         table.insert(lis, c)
     end
     
@@ -44,11 +41,9 @@ function base2to(val)
         num=num+num
     end
     
-    for i=1,tablelength(ar) 
-    do 
-        str=str .. ar[i]
+    s = 0
+    for i,v in ipairs(ar) do -- this functions gives the sum of the items in the ar[] table 
+        s = s + v
     end
-    return(str)
+    return(s) -- return the sum of the table 
 end
-
-print(base2to(10))
